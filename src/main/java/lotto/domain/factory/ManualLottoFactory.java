@@ -23,7 +23,7 @@ public class ManualLottoFactory implements LottoMakeable {
 		try {
 			List<LottoNo> lottoNos = Arrays.stream(this.inputNumbers)
 				.map(String::trim)
-				.map(LottoNo::new)
+				.map(LottoNo::of)
 				.collect(Collectors.toList());
 			Collections.sort(lottoNos);
 			return new Lotto(lottoNos);

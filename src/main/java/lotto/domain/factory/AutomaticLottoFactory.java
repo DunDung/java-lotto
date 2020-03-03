@@ -15,10 +15,9 @@ public class AutomaticLottoFactory implements LottoMakeable {
 	private final List<LottoNo> lottoBox;
 
 	public AutomaticLottoFactory() {
-		this.lottoBox = IntStream.range(LottoNo.MIN, LottoNo.MAX)
+		this.lottoBox = IntStream.range(LottoNo.MIN, LottoNo.MAX + 1)
 			.boxed()
-			.map(String::valueOf)
-			.map(LottoNo::new)
+			.map(LottoNo::of)
 			.collect(Collectors.toList());
 	}
 
