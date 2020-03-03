@@ -12,19 +12,18 @@ public class AutomaticLottoFactory implements LottoMakeable {
 	private static final int LOTTO_FROM_INDEX = 0;
 	private static final int LOTTO_TO_INDEX = 6;
 
-	private final List<LottoNo> lottoBox;
+	private final List<Integer> lottoBox;
 
 	public AutomaticLottoFactory() {
 		this.lottoBox = IntStream.range(LottoNo.MIN, LottoNo.MAX + 1)
 			.boxed()
-			.map(LottoNo::of)
 			.collect(Collectors.toList());
 	}
 
 	@Override
 	public Lotto create() {
 		Collections.shuffle(this.lottoBox);
-		List<LottoNo> lottoNos = this.lottoBox.subList(LOTTO_FROM_INDEX, LOTTO_TO_INDEX);
+		List<Integer> lottoNos = this.lottoBox.subList(LOTTO_FROM_INDEX, LOTTO_TO_INDEX);
 		Collections.sort(lottoNos);
 		return new Lotto(lottoNos);
 	}

@@ -18,7 +18,7 @@ public class LottoManager {
 		for (Lotto lotto : lotteries) {
 			int count = winLotto.compare(lotto);
 			boolean isBonus = winLotto.isMatchBonus(lotto);
-			ranks.add(Rank.findRank(count, isBonus));
+			ranks.add(Rank.of(count, isBonus));
 		}
 		return ranks;
 	}

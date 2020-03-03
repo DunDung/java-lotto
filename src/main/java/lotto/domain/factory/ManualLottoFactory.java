@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import lotto.domain.Lotto;
-import lotto.domain.LottoNo;
 import lotto.exception.NotIntegerException;
 
 public class ManualLottoFactory implements LottoMakeable {
@@ -21,9 +20,9 @@ public class ManualLottoFactory implements LottoMakeable {
 	@Override
 	public Lotto create() {
 		try {
-			List<LottoNo> lottoNos = Arrays.stream(this.inputNumbers)
+			List<Integer> lottoNos = Arrays.stream(this.inputNumbers)
 				.map(String::trim)
-				.map(LottoNo::of)
+				.map(Integer::new)
 				.collect(Collectors.toList());
 			Collections.sort(lottoNos);
 			return new Lotto(lottoNos);

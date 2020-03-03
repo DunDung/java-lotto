@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.domain.factory.ManualLottoFactory;
+import lotto.exception.DuplicateNumberException;
 
 public class WinLotto {
 	private static final int MIN_WIN_VALUE = 3;
@@ -11,6 +12,9 @@ public class WinLotto {
 
 	public WinLotto(String winLotto, String bonusBall) {
 		this.lotto = new ManualLottoFactory(winLotto).create();
+		if (this.lotto.contain(LottoNo.of(bonusBall))) {
+			throw new DuplicateNumberException();
+		}
 		this.bonusBall = new BonusBall(bonusBall);
 	}
 

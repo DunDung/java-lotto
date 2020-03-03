@@ -18,7 +18,7 @@ public enum Rank {
 		this.hitCount = hitCount;
 	}
 
-	public static Rank findRank(int count, boolean isMatchBonus) {
+	public static Rank of(int count, boolean isMatchBonus) {
 		Rank rank = Arrays.stream(values())
 			.filter(x -> x.hitCount == count)
 			.findFirst()

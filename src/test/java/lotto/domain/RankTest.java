@@ -12,7 +12,7 @@ public class RankTest {
 	@ParameterizedTest
 	@CsvSource(value = {"0,false,NO_WIN", "5,false,THIRD", "5,true,SECOND"})
 	void findTest(int count, boolean isMatchBonus, Rank values) {
-		Rank lottoResult = Rank.findRank(count, isMatchBonus);
+		Rank lottoResult = Rank.of(count, isMatchBonus);
 		assertThat(lottoResult == values).isTrue();
 	}
 
