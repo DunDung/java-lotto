@@ -2,9 +2,7 @@ package lotto.domain;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.*;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -21,32 +19,18 @@ public class WinLottoTest {
 	@DisplayName("당첨 로또와 비교하여 맞은 개수 테스트")
 	@Test
 	void compareTest() {
-		List<LottoNo> numbers = IntStream.range(1, 7)
-			.boxed()
-			.map(String::valueOf)
-			.map(LottoNo::new)
-			.collect(Collectors.toList());
-		Lotto lotto = new Lotto(numbers);
-		assertThat(winLotto.compare(lotto)).isEqualTo(6);
+		Lotto equalsLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+		Lotto notEqualsLotto = new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12));
 
-		numbers = IntStream.range(7, 13)
-			.boxed()
-			.map(String::valueOf)
-			.map(LottoNo::new)
-			.collect(Collectors.toList());
-		lotto = new Lotto(numbers);
-		assertThat(winLotto.compare(lotto)).isEqualTo(0);
+		assertThat(winLotto.compare(equalsLotto)).isEqualTo(6);
+		assertThat(winLotto.compare(notEqualsLotto)).isEqualTo(0);
 	}
 
 	@DisplayName("전달받은 로또에서 보너스볼과 일치하는게 있는지 테스트")
 	@Test
 	void isMatchBonus() {
-		List<LottoNo> numbers = IntStream.range(7, 13)
-			.boxed()
-			.map(String::valueOf)
-			.map(LottoNo::new)
-			.collect(Collectors.toList());
-		Lotto lotto = new Lotto(numbers);
+		Lotto lotto = new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12));
+
 		assertThat(winLotto.isMatchBonus(lotto)).isTrue();
 	}
 }
